@@ -16,6 +16,7 @@
     "dotenv": "^16.4.5",
     "express": "^4.18.3",
     "mongoose": "^6.5.0",
+    "node-fetch": "^3.3.2",
     "zod": "^3.22.4",
     "zod-express-middleware": "^1.4.0"
   }

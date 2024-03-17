@@ -3,9 +3,10 @@ const IssueModel = require('../models/IssueModel');
 class IssueController {
   async create(req, res) {
     try {
-      const user = await IssueModel.create(req.body);
-      return res.status(200).json(user);
+      const issue = await IssueModel.create(req.body);
+      return res.status(200).json(issue);
     } catch (error) {
+      console.error(error);
       res.status(500).json({ message: 'ERROR', error: error.message });
     }
   }
@@ -32,6 +33,7 @@ class IssueController {
         message: 'Issue successfully deleted!',
       });
     } catch (error) {
+      console.error(error);
       res.status(500).json({ message: 'ERROR', error: error.message });
     }
   }
@@ -42,8 +44,8 @@ class IssueController {
       const foundUser = await IssueModel.findById(id);
       if (!foundUser)
         return res.status(404).json({ message: 'Issue not found!' });
-      const user = await foundUser.set(req.body).save();
-      res.status(200).json(user);
+      const issue = await foundUser.set(req.body).save();
+      res.status(200).json(issue);
     } catch (error) {
       res.status(500).json({ message: 'ERROR', error: error.message });
     }
