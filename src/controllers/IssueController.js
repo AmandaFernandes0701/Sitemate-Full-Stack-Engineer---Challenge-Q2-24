@@ -1,9 +1,9 @@
-const UserModel = require('../models/userModel');
+const IssueModel = require('../models/IssueModel');
 
-class UserController {
+class IssueController {
   async create(req, res) {
     try {
-      const user = await UserModel.create(req.body);
+      const user = await IssueModel.create(req.body);
       return res.status(200).json(user);
     } catch (error) {
       res.status(500).json({ message: 'ERROR', error: error.message });
@@ -12,7 +12,7 @@ class UserController {
 
   async read(req, res) {
     try {
-      const users = await UserModel.find();
+      const users = await IssueModel.find();
       return res.status(200).json(users);
     } catch (error) {
       res.status(500).json({ message: 'ERROR', error: error.message });
@@ -23,13 +23,13 @@ class UserController {
     try {
       const { id } = req.params;
 
-      const foundUser = await UserModel.findById(id);
+      const foundUser = await IssueModel.findById(id);
       if (!foundUser) {
-        return res.status(404).json({ message: 'User not found!' });
+        return res.status(404).json({ message: 'Issue not found!' });
       }
       await foundUser.deleteOne();
       res.status(200).json({
-        message: 'User successfully deleted!',
+        message: 'Issue successfully deleted!',
       });
     } catch (error) {
       res.status(500).json({ message: 'ERROR', error: error.message });
@@ -39,9 +39,9 @@ class UserController {
   async update(req, res) {
     try {
       const { id } = req.params;
-      const foundUser = await UserModel.findById(id);
+      const foundUser = await IssueModel.findById(id);
       if (!foundUser)
-        return res.status(404).json({ message: 'User not found!' });
+        return res.status(404).json({ message: 'Issue not found!' });
       const user = await foundUser.set(req.body).save();
       res.status(200).json(user);
     } catch (error) {
@@ -50,4 +50,4 @@ class UserController {
   }
 }
 
-module.exports = new UserController();
+module.exports = new IssueController();
