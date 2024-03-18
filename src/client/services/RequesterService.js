@@ -1,7 +1,6 @@
 const api = require('./api');
 
 exports.createIssue = async (issueData) => {
-  console.log('a informação que chega no requester eh:', issueData);
   return await api.post(`/issue`, { ...issueData });
 };
 
@@ -11,9 +10,9 @@ exports.getAllIssues = async () => {
 };
 
 exports.deleteIssue = async (id) => {
-  await api.delete(`/issue/${id}`);
+  return await api.delete(`/issue/${id}`);
 };
 
 exports.updateIssue = async (id, issueData) => {
-  await api.put(`/issue/${id}`, issueData);
+  return await api.put(`/issue/${id}`, issueData);
 };

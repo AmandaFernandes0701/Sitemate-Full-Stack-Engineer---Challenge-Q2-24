@@ -1,5 +1,6 @@
 const readline = require('readline');
 const managerService = require('./services/ManagerService');
+const chalk = require('chalk');
 
 const rl = readline.createInterface({
   input: process.stdin,
@@ -12,16 +13,19 @@ async function createIssue() {
 
   do {
     title = await new Promise((resolve) => {
-      rl.question('Enter issue title: ', (input) => {
-        if (input.length < 2 || input.length > 30) {
-          console.error(
-            'Error: Title must be between 2 and 30 characters long.\nPlease, try again',
-          );
-        } else {
-          validTitle = true;
-        }
-        resolve(input);
-      });
+      rl.question(
+        '\nTitle --> Must be between 2 and 30 characters long\n✏️  Enter issue title: ',
+        (input) => {
+          if (input.length < 2 || input.length > 30) {
+            console.error(
+              chalk.red('\nError: Incorrect value, please enter again!'),
+            );
+          } else {
+            validTitle = true;
+          }
+          resolve(input);
+        },
+      );
     });
   } while (!validTitle);
 
@@ -30,16 +34,19 @@ async function createIssue() {
 
   do {
     description = await new Promise((resolve) => {
-      rl.question('Enter issue description: ', (input) => {
-        if (input.length < 50 || input.length > 200) {
-          console.error(
-            'Error: Description must be between 50 and 200 characters long.\nPlease, try again',
-          );
-        } else {
-          validDescription = true;
-        }
-        resolve(input);
-      });
+      rl.question(
+        '\nIssue Description --> Must be between 50 and 200 characters long.\n✏️  Enter issue description: ',
+        (input) => {
+          if (input.length < 50 || input.length > 200) {
+            console.error(
+              chalk.red('\nError: Incorrect value, please enter again!'),
+            );
+          } else {
+            validDescription = true;
+          }
+          resolve(input);
+        },
+      );
     });
   } while (!validDescription);
 
@@ -49,11 +56,14 @@ async function createIssue() {
       description: description,
     };
 
-    const result = await managerService.useCreateIssue(issueData);
-    console.log('Issue created successfully:', result);
+    await managerService.useCreateIssue(issueData);
+    console.log(chalk.green('\n✅ Issue created successfully!!!'));
   } catch (error) {
     console.log('o erro é:', error.response.data);
-    console.error('Error creating issue:', error.response.data.message);
+    console.error(
+      chalk.red('Error creating issue:'),
+      error.response.data.message,
+    );
   } finally {
     rl.close();
   }
@@ -93,8 +103,8 @@ async function viewIssues() {
 function deleteIssue() {
   rl.question('Enter issue ID to delete: ', async (id) => {
     try {
-      const result = await managerService.useDeleteIssue(id);
-      console.log('Issue deleted successfully:', result);
+      await managerService.useDeleteIssue(id);
+      console.log(chalk.green('\n✅ Issue deleted successfully!!!'));
     } catch (error) {
       console.error('Error deleting issue:', error.message);
     } finally {
@@ -104,13 +114,18 @@ function deleteIssue() {
 }
 
 function start() {
-  console.log('Issue Management System');
+  console.log(
+    chalk.bold.magenta(
+      '\nIssue Management System - By Amanda Fernandes (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧\n',
+    ),
+  );
+
   console.log('1- Create Issue');
   console.log('2- Edit Issue');
   console.log('3- View All Issues');
   console.log('4- Delete Issue');
 
-  rl.question('Enter your choice (1-4): ', (choice) => {
+  rl.question('\nEnter your choice (1-4): ', (choice) => {
     switch (choice) {
       case '1':
         createIssue();
