@@ -101,4 +101,4 @@ Given more time, there are several areas where I would improve the codebase:
 
 ## Note
 
-Due to time constraints, some of these improvements were not feasible within the scope of this challenge. However, I'm excited about the opportunity to further enhance this project and contribute to the success of the Sitemate team.
+Due to time constraints, some of these improvements were not feasible within the scope of this challenge. However, I'm excited about the opportunity to further enhance this project and contribute to the success of the Sitemate team. Additionally, I did not include the .env file in the Git repository as it poses security risks and does not comply with LGPD. However, I did this so that the evaluators could verify my project.
