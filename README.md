@@ -48,9 +48,40 @@ The client-side code is organized within the `client` directory, containing the 
 
 - **User Interface**: While not explicitly mentioned, the client likely includes user interface components responsible for displaying retrieved data and interacting with users. These components would utilize the services to perform CRUD operations on issues.
 
-## Usage
+## Instructions for Running the System
 
-To run the tests, simply execute `npm test` from the root directory. To start the server, run `npm start`.
+To execute this project locally, follow these steps:
+
+1. Clone the repository to your local machine
+   ```bash
+   git clone https://github.com/AmandaFernandes0701/Sitemate-Full-Stack-Engineer---Challenge-Q2-24.git
+   ```
+2. Navigate to the project directory
+
+3. Install project dependencies
+   ```bash
+   npm install
+   ```
+   
+4. To start the backend development server, run
+   ```bash
+   npm start
+   ```
+
+5. To start the client-side system locally, via the terminal, input the following command
+   ```bash
+   src\functions\Sitemate-Full-Stack-Engineer---Challenge-Q2-24\src\client\apiClientFunction.js
+   ```
+
+6. After navigating to the directory mentioned in step 5, you can execute the following command in the terminal
+   ```bash
+    node apiClientFunction.js
+   ```
+
+7. To run unit tests, use the following command
+   ```bash
+   npm test
+   ```
 
 ## Improvements
 
