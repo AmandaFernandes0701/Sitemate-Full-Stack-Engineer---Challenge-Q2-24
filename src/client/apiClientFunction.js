@@ -69,7 +69,7 @@ async function createIssue() {
   }
 }
 
-async function editIssue() {
+async function updateIssue() {
   rl.question('Enter issue ID to edit: ', async (id) => {
     let validTitle = false;
     let title;
@@ -127,7 +127,7 @@ async function editIssue() {
   });
 }
 
-async function viewIssues() {
+async function getIssues() {
   try {
     const issues = await managerService.useGetAllIssues();
     console.log('All Issues:', issues);
@@ -175,10 +175,10 @@ function start() {
         createIssue();
         break;
       case '2':
-        editIssue();
+        updateIssue();
         break;
       case '3':
-        viewIssues();
+        getIssues();
         break;
       case '4':
         deleteIssue();
