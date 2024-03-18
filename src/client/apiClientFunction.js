@@ -69,23 +69,61 @@ async function createIssue() {
   }
 }
 
-function editIssue() {
+async function editIssue() {
   rl.question('Enter issue ID to edit: ', async (id) => {
-    rl.question('Enter new issue title: ', async (title) => {
-      rl.question('Enter new issue description: ', async (description) => {
-        try {
-          const result = await managerService.useUpdateIssue(id, {
-            title,
-            description,
-          });
-          console.log('Issue updated successfully:', result);
-        } catch (error) {
-          console.error('Error updating issue:', error.message);
-        } finally {
-          rl.close();
-        }
+    let validTitle = false;
+    let title;
+
+    do {
+      title = await new Promise((resolve) => {
+        rl.question(
+          '\nTitle --> Must be between 2 and 30 characters long\n✏️  Enter new issue title: ',
+          (input) => {
+            if (input.length < 2 || input.length > 30) {
+              console.error(
+                chalk.red('\nError: Incorrect value, please enter again!'),
+              );
+            } else {
+              validTitle = true;
+            }
+            resolve(input);
+          },
+        );
       });
-    });
+    } while (!validTitle);
+
+    let validDescription = false;
+    let description;
+
+    do {
+      description = await new Promise((resolve) => {
+        rl.question(
+          '\nIssue Description --> Must be between 50 and 200 characters long.\n✏️  Enter new issue description: ',
+          (input) => {
+            if (input.length < 50 || input.length > 200) {
+              console.error(
+                chalk.red('\nError: Incorrect value, please enter again!'),
+              );
+            } else {
+              validDescription = true;
+            }
+            resolve(input);
+          },
+        );
+      });
+    } while (!validDescription);
+
+    try {
+      await managerService.useUpdateIssue(id, {
+        title,
+        description,
+      });
+      console.log(chalk.green('\n✅ Issue updated successfully!!!'));
+    } catch (error) {
+      console.error('Error updating issue:', error.message);
+    } finally {
+      rl.close();
+    }
   });
 }
 
