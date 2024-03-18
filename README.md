@@ -103,6 +103,6 @@ Given more time, there are several areas where I would improve the codebase:
 
 ## Note
 
-Due to time constraints, some of these improvements were not feasible within the scope of this challenge. However, I'm excited about the opportunity to further enhance this project and contribute to the success of the Sitemate team. Additionally, I did not include the .env file in the Git repository as it poses security risks and does not comply with LGPD. However, I did this so that the evaluators could verify my project.
+Due to time constraints, some of these improvements were not feasible within the scope of this challenge. However, I'm excited about the opportunity to further enhance this project and contribute to the success of the Sitemate team. Additionally, I wouldn't include the .env file in the Git repository beacuse it has sensitive information. However, I did this so that the evaluators could verify my project.
 
 Besides, it's important to ensure that the connection with the MongoDB database and Mongoose are functioning correctly as I decided to use them as the database to save the information. I find it very practical and easy to use, which is why I made this project choice.
