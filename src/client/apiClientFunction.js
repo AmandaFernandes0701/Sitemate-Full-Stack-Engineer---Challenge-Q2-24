@@ -144,7 +144,13 @@ function deleteIssue() {
       await managerService.useDeleteIssue(id);
       console.log(chalk.green('\n✅ Issue deleted successfully!!!'));
     } catch (error) {
-      console.error('Error deleting issue:', error.message);
+      if (error.response && error.response.status === 400) {
+        console.error(
+          chalk.red('Issue ID not found or error occurred: Bad Request'),
+        );
+      } else {
+        console.error(chalk.red('An error occurred:', error.message));
+      }
     } finally {
       rl.close();
     }

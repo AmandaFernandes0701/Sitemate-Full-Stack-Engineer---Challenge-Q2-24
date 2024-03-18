@@ -13,8 +13,8 @@ class IssueController {
 
   async read(req, res) {
     try {
-      const users = await IssueModel.find();
-      return res.status(200).json(users);
+      const issues = await IssueModel.find();
+      return res.status(200).json(issues);
     } catch (error) {
       res.status(500).json({ message: 'ERROR', error: error.message });
     }
@@ -24,11 +24,11 @@ class IssueController {
     try {
       const { id } = req.params;
 
-      const foundUser = await IssueModel.findById(id);
-      if (!foundUser) {
+      const foundIssue = await IssueModel.findById(id);
+      if (!foundIssue) {
         return res.status(404).json({ message: 'Issue not found!' });
       }
-      await foundUser.deleteOne();
+      await foundIssue.deleteOne();
       res.status(200).json({
         message: 'Issue successfully deleted!',
       });
@@ -41,10 +41,10 @@ class IssueController {
   async update(req, res) {
     try {
       const { id } = req.params;
-      const foundUser = await IssueModel.findById(id);
-      if (!foundUser)
+      const foundIssue = await IssueModel.findById(id);
+      if (!foundIssue)
         return res.status(404).json({ message: 'Issue not found!' });
-      const issue = await foundUser.set(req.body).save();
+      const issue = await foundIssue.set(req.body).save();
       res.status(200).json(issue);
     } catch (error) {
       res.status(500).json({ message: 'ERROR', error: error.message });
