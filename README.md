@@ -97,6 +97,8 @@ Given more time, there are several areas where I would improve the codebase:
 
 - **Unit Testing**: Strengthening unit tests to ensure comprehensive coverage and reliability of the codebase.
 
+- **Enhancing Get Issue by ID Functionality**: I would invest more time in organizing and optimizing the functionality related to retrieving issues by their unique IDs. This would improve the overall user experience and efficiency of the application.
+
 - **Frontend Development**: Given my passion for frontend development, I would create a responsive frontend with a user-friendly design, leveraging tools like Figma for UX/UI design. One of my previous projects, [Projeto-DTI](https://github.com/AmandaFernandes0701/Projeto-DTI), showcases my frontend skills and project organization.
 
 ## Note
