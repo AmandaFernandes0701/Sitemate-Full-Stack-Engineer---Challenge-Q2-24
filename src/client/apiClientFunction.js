@@ -1,5 +1,5 @@
 const readline = require('readline');
-const IssueController = require('../controllers/IssueController');
+const managerService = require('./services/ManagerService');
 
 const rl = readline.createInterface({
   input: process.stdin,
@@ -31,9 +31,7 @@ function createIssue() {
           description: description.trim(),
         };
 
-        const result = await IssueController.create({
-          issueData,
-        });
+        const result = await managerService.useCreateIssue(issueData);
         console.log('Issue created successfully:', result);
       } catch (error) {
         console.error('Error creating issue:', error.message);
@@ -49,9 +47,9 @@ function editIssue() {
     rl.question('Enter new issue title: ', async (title) => {
       rl.question('Enter new issue description: ', async (description) => {
         try {
-          const result = await IssueController.update({
-            params: { id },
-            body: { title, description },
+          const result = await managerService.useUpdateIssue(id, {
+            title,
+            description,
           });
           console.log('Issue updated successfully:', result);
         } catch (error) {
@@ -63,15 +61,22 @@ function editIssue() {
     });
   });
 }
-function viewIssues() {
-  console.log('oi');
-  rl.close();
+
+async function viewIssues() {
+  try {
+    const issues = await managerService.useGetAllIssues();
+    console.log('All Issues:', issues);
+  } catch (error) {
+    console.error('Error fetching issues:', error.message);
+  } finally {
+    rl.close();
+  }
 }
 
 function deleteIssue() {
   rl.question('Enter issue ID to delete: ', async (id) => {
     try {
-      const result = await IssueController.destroy({ params: id });
+      const result = await managerService.useDeleteIssue(id);
       console.log('Issue deleted successfully:', result);
     } catch (error) {
       console.error('Error deleting issue:', error.message);
@@ -104,6 +109,7 @@ function start() {
         break;
       default:
         console.log('Invalid choice.');
+        rl.close();
     }
   });
 }

@@ -1,7 +1,7 @@
-const issueService = require('./IssueService');
+const requesterService = require('./RequesterService');
 
 const useCreateIssue = async (issueData) => {
-  const create = await issueService.createIssue(issueData).then((res) => {
+  const create = await requesterService.createIssue(issueData).then((res) => {
     return res;
   });
   return create;
@@ -9,7 +9,7 @@ const useCreateIssue = async (issueData) => {
 
 const useGetAllIssues = async () => {
   let issues = [];
-  await issueService.getAllIssues().then((res) => {
+  await requesterService.getAllIssues().then((res) => {
     issues = res.data;
   });
   return issues;
@@ -17,7 +17,7 @@ const useGetAllIssues = async () => {
 
 const useDeleteIssue = async (id) => {
   try {
-    const response = await issueService.deleteIssue(id);
+    const response = await requesterService.deleteIssue(id);
     return response.data;
   } catch (error) {
     console.error('Error deleting issue', error);
@@ -27,7 +27,7 @@ const useDeleteIssue = async (id) => {
 
 const useUpdateIssue = async (id, issueData) => {
   try {
-    const response = await issueService.updateIssue(id, issueData);
+    const response = await requesterService.updateIssue(id, issueData);
     return response.data;
   } catch (error) {
     console.error('Error updating issue', error);
