@@ -7,39 +7,55 @@ const rl = readline.createInterface({
 });
 
 async function createIssue() {
-  rl.question('Enter issue title: ', async (title) => {
-    if (title.length < 2 || title.length > 30) {
-      console.error(
-        'Error: Title must be between 2 and 30 characters long.\nPlease, try again',
-      );
-      createIssue();
-      return;
-    }
+  let validTitle = false;
+  let title;
 
-    rl.question('Enter issue description: ', async (description) => {
-      if (description.length < 50 || description.length > 200) {
-        console.error(
-          'Error: Description must be between 50 and 200 characters long.\nPlease, try again',
-        );
-        createIssue();
-        return;
-      }
-
-      try {
-        const issueData = {
-          title: title.trim(),
-          description: description.trim(),
-        };
-
-        const result = await managerService.useCreateIssue(issueData);
-        console.log('Issue created successfully:', result);
-      } catch (error) {
-        console.error('Error creating issue:', error.response.data.message);
-      } finally {
-        rl.close();
-      }
+  do {
+    title = await new Promise((resolve) => {
+      rl.question('Enter issue title: ', (input) => {
+        if (input.length < 2 || input.length > 30) {
+          console.error(
+            'Error: Title must be between 2 and 30 characters long.\nPlease, try again',
+          );
+        } else {
+          validTitle = true;
+        }
+        resolve(input);
+      });
     });
-  });
+  } while (!validTitle);
+
+  let validDescription = false;
+  let description;
+
+  do {
+    description = await new Promise((resolve) => {
+      rl.question('Enter issue description: ', (input) => {
+        if (input.length < 50 || input.length > 200) {
+          console.error(
+            'Error: Description must be between 50 and 200 characters long.\nPlease, try again',
+          );
+        } else {
+          validDescription = true;
+        }
+        resolve(input);
+      });
+    });
+  } while (!validDescription);
+
+  try {
+    const issueData = {
+      title: title.trim(),
+      description: description.trim(),
+    };
+
+    const result = await managerService.useCreateIssue(issueData);
+    console.log('Issue created successfully:', result);
+  } catch (error) {
+    console.error('Error creating issue:', error.response.data.message);
+  } finally {
+    rl.close();
+  }
 }
 
 function editIssue() {
