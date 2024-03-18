@@ -40,7 +40,7 @@ The client-side code is organized within the `client` directory, containing the 
 
 - **Requester Service**: Responsible for making HTTP requests to the server. It abstracts away the details of the HTTP communication, providing a cleaner interface for the manager service to interact with.
 
-- **API Calls**: Within the services, there are functions dedicated to making specific API calls, such as `createIssue`, `updateIssue`, `deleteIssue`, `fetchIssues`, and `fetchIssueById`. These functions encapsulate the logic for communicating with the server's endpoints.
+- **API Calls**: Within the services, there are functions dedicated to making specific API calls, such as `createIssue`, `updateIssue`, `getIssues`, and `deleteIssue`. These functions encapsulate the logic for communicating with the server's endpoints.
 
 #### Main Server Functionality
 
