@@ -52,6 +52,22 @@ The client-side code is organized within the `client` directory, containing the 
 
 To run the tests, simply execute `npm test` from the root directory. To start the server, run `npm start`.
 
+## Improvements
+
+Given more time, there are several areas where I would improve the codebase:
+
+- **Enhanced Security**: I would increase security measures, such as implementing authentication and authorization mechanisms to control access to the API endpoints.
+
+- **Validation Improvements**: Adding more robust validation to ensure data integrity and prevent potential security vulnerabilities.
+
+- **Error Handling**: Improving error handling to provide more informative and user-friendly error messages.
+
+- **Code Modularity**: Modularizing functions and components to avoid repetition and improve code maintainability.
+
+- **Unit Testing**: Strengthening unit tests to ensure comprehensive coverage and reliability of the codebase.
+
+- **Frontend Development**: Given my passion for frontend development, I would create a responsive frontend with a user-friendly design, leveraging tools like Figma for UX/UI design. One of my previous projects, [Projeto-DTI](https://github.com/AmandaFernandes0701/Projeto-DTI), showcases my frontend skills and project organization.
+
 ## Note
 
-Due to time constraints, I acknowledge that there are areas where the code could be improved. If time permitted, I would enhance data validation within the validators, implement middleware for route authentication based on user roles, and consider creating a `server` directory to better organize the codebase.
+Due to time constraints, some of these improvements were not feasible within the scope of this challenge. However, I'm excited about the opportunity to further enhance this project and contribute to the success of the Sitemate team.
