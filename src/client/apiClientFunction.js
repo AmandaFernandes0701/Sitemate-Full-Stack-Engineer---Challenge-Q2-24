@@ -45,13 +45,14 @@ async function createIssue() {
 
   try {
     const issueData = {
-      title: title.trim(),
-      description: description.trim(),
+      title: title,
+      description: description,
     };
 
     const result = await managerService.useCreateIssue(issueData);
     console.log('Issue created successfully:', result);
   } catch (error) {
+    console.log('o erro é:', error.response.data);
     console.error('Error creating issue:', error.response.data.message);
   } finally {
     rl.close();

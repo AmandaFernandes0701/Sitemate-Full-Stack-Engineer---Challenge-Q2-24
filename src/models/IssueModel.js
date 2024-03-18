@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const IssueSchema = new mongoose.Schema(
   {
-    tittle: {
+    title: {
       type: String,
       required: true,
       trim: true,

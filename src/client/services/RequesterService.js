@@ -1,7 +1,8 @@
 const api = require('./api');
 
 exports.createIssue = async (issueData) => {
-  await api.post(`/issue`, { ...issueData });
+  console.log('a informação que chega no requester eh:', issueData);
+  return await api.post(`/issue`, { ...issueData });
 };
 
 exports.getAllIssues = async () => {

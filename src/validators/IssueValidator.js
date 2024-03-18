@@ -4,8 +4,8 @@ const { default: mongoose } = require('mongoose');
 
 const create = validateRequest({
   body: z.object({
-    tittle: z
-      .string({ required_error: 'The tittle is required' })
+    title: z
+      .string({ required_error: 'The title is required' })
       .min(2, {
         message: 'Tittle must be at least 2 characters long',
       })
@@ -31,8 +31,8 @@ const destroy = validateRequest({
 
 const update = validateRequest({
   body: z.object({
-    tittle: z
-      .string({ required_error: 'The tittle is required' })
+    title: z
+      .string({ required_error: 'The title is required' })
       .min(2, {
         message: 'Tittle must be at least 2 characters long',
       })
