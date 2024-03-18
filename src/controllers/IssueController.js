@@ -6,7 +6,6 @@ class IssueController {
       const issue = await IssueModel.create(req.body);
       return res.status(200).json(issue);
     } catch (error) {
-      console.error(error);
       res.status(500).json({ message: 'ERROR', error: error.message });
     }
   }
@@ -33,7 +32,6 @@ class IssueController {
         message: 'Issue successfully deleted!',
       });
     } catch (error) {
-      console.error(error);
       res.status(500).json({ message: 'ERROR', error: error.message });
     }
   }
