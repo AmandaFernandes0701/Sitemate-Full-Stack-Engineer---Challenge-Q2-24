@@ -6,7 +6,7 @@ const rl = readline.createInterface({
   output: process.stdout,
 });
 
-function createIssue() {
+async function createIssue() {
   rl.question('Enter issue title: ', async (title) => {
     if (title.length < 2 || title.length > 30) {
       console.error(
@@ -34,7 +34,7 @@ function createIssue() {
         const result = await managerService.useCreateIssue(issueData);
         console.log('Issue created successfully:', result);
       } catch (error) {
-        console.error('Error creating issue:', error.message);
+        console.error('Error creating issue:', error.response.data.message);
       } finally {
         rl.close();
       }

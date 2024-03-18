@@ -8,11 +8,13 @@ const useCreateIssue = async (issueData) => {
 };
 
 const useGetAllIssues = async () => {
-  let issues = [];
-  await requesterService.getAllIssues().then((res) => {
-    issues = res.data;
-  });
-  return issues;
+  try {
+    const issues = await requesterService.getAllIssues();
+    return issues;
+  } catch (error) {
+    console.error('Error fetching issues:', error.message);
+    throw error;
+  }
 };
 
 const useDeleteIssue = async (id) => {
